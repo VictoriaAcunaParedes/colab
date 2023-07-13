@@ -27,13 +27,13 @@ class Command(BaseCommand):
 
             ss = Subject()
             ss.course = Course.objects.get(name = "Matematica Avanzada")
-            ss.teacher = Teacher.objects.get(first_name = "Pepito")
+            ss.teacher = Teacher.objects.get(first_name = "pepito")
             ss.start_date = "2023-08-10"
             ss.save()
 
             ss = Subject()
             ss.course = Course.objects.get(name = "Literatura")
-            ss.teacher = Teacher.objects.get(first_name = "Carlito")
+            ss.teacher = Teacher.objects.get(first_name = "carlito")
             ss.start_date = "2023-10-15"
             ss.save()
         elif mode == "clear":
@@ -42,15 +42,19 @@ class Command(BaseCommand):
     def seeds_student(self, mode):
         if mode == "load" and Student.objects.all().count() <= 0:
             s = Student()
+            s.username = 'Juancito'
             s.first_name = "Juancito"
             s.last_name = "Espinoza"
             s.email = "juan@gmail.com"
+            s.set_password("123456")
             s.save()
 
             s = Student()
+            s.username = 'Ramiro'
             s.first_name = "Ramiro"
             s.last_name = "Espinoza"
             s.email = "ramiro@gmail.com"
+            s.set_password("123456")
             s.save()
         elif mode == "clear":
             Student.objects.all().delete()
@@ -75,15 +79,19 @@ class Command(BaseCommand):
         if mode == "load" and Teacher.objects.all().count() <= 0:
             # Verificamos que solo see creen docentes una sola vez
             t = Teacher()
-            t.first_name = "Pepito"
+            t.username = "pepito"
+            t.first_name = "pepito"
             t.last_name = "Alcachofa"
             t.bio = "Este es un bio del docente"
+            t.set_password('123456')
             t.save()
 
             t = Teacher()
-            t.first_name = "Carlito"
+            t.username = "carlito"
+            t.first_name = "carlito"
             t.last_name = "Alcachofa"
             t.bio = "Este es un bio del docente"
+            t.set_password('123456')
             t.save()
         elif mode == "clear":
             Teacher.objects.all().delete()
