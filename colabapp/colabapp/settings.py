@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-b)zjul-a^up@byl^-3bhu6#0q34*6yuv3i@fis5)l1_cd^tq2a
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = [os.environ.get("GITPOD_WORKSPACE_URL", "").replace("https://", "https://8000-")]
 
 
 # Application definition
@@ -107,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-cl'
 
-TIME_ZONE = 'America'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 

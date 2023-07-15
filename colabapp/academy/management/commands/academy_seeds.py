@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+from django.contrib.auth.models import Permission
 from academy.models import Teacher, Student, Course, Subject, Subscription
 
 class Command(BaseCommand):
@@ -50,6 +51,8 @@ class Command(BaseCommand):
             s.is_active = True
             s.set_password("123456")
             s.save()
+            perm = Permission.objects.get(name = "Can add subscription")
+            s.user_permissions.add(perm)
 
             s = Student()
             s.username = 'Ramiro'
@@ -60,6 +63,9 @@ class Command(BaseCommand):
             s.is_active = True
             s.set_password("123456")
             s.save()
+            perm = Permission.objects.get(name = "Can add subscription")
+            s.user_permissions.add(perm)
+
         elif mode == "clear":
             Student.objects.all().delete()
 
@@ -83,8 +89,8 @@ class Command(BaseCommand):
         if mode == "load" and Teacher.objects.all().count() <= 0:
             # Verificamos que solo see creen docentes una sola vez
             t = Teacher()
-            t.username = "pepito"
-            t.first_name = "pepito"
+            t.username = "Pepito"
+            t.first_name = "Pepito"
             t.last_name = "Alcachofa"
             t.bio = "Este es un bio del docente"
             t.is_staff = True
@@ -93,8 +99,8 @@ class Command(BaseCommand):
             t.save()
 
             t = Teacher()
-            t.username = "carlito"
-            t.first_name = "carlito"
+            t.username = "Carlito"
+            t.first_name = "Carlito"
             t.last_name = "Alcachofa"
             t.bio = "Este es un bio del docente"
             t.is_staff = True
